@@ -190,8 +190,9 @@ class Migration {
                         yield updateVersion();
                     }
                     catch (e) {
-                        this.options.
-                            logger('error', `Encountered an error while migrating from ${i} to ${i + 1}`);
+                        const prevVersion = self.list[i].version;
+                        const destVersion = self.list[i + 1].version;
+                        this.options.logger('error', `Encountered an error while migrating from ${prevVersion} to ${destVersion}`);
                         throw e;
                     }
                 }
@@ -204,8 +205,9 @@ class Migration {
                         yield updateVersion();
                     }
                     catch (e) {
-                        this.options.
-                            logger('error', `Encountered an error while migrating from ${i} to ${i - 1}`);
+                        const prevVersion = self.list[i].version;
+                        const destVersion = self.list[i - 1].version;
+                        this.options.logger('error', `Encountered an error while migrating from ${prevVersion} to ${destVersion}`);
                         throw e;
                     }
                 }
